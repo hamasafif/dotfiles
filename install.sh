@@ -28,7 +28,8 @@ install_base() {
         ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-font-awesome \
         noto-fonts-emoji papirus-icon-theme materia-gtk-theme \
         polkit-gnome network-manager-applet pamixer brightnessctl \
-        ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-font-awesome ttf-hack-nerd
+        ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-font-awesome ttf-hack-nerd \
+        micro firefox
 }
 
 # 2. Install Virtualization Tools (QEMU/KVM)
