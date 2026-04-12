@@ -3,6 +3,11 @@
 Pastikan Anda menginstall archlinux menggunakan desktop profile bspwm
 Dan Settingan ini Hanya Aku yang tau, Kalo mau oprek ya sak karep mu
 
+sebelum bertindak lebih lanjut kamu perlu clone dan install repo dari `dctxmei`
+
+[Rofi](https://github.com/dctxmei/rofi-themes)
+
+dan ikut instruksi nya
 
 
 ## Penyesuaian Wallapaper (Default saat startx)
