@@ -100,6 +100,14 @@ deploy_dots() {
     print_status "Mengatur izin eksekusi script..."
     find ~/.config -name "*.sh" -exec chmod +x {} +
     chmod +x ~/.config/bspwm/bspwmrc
+
+    # Di dalam install.sh bagian deploy_dots
+    print_status "Menyiapkan folder Pictures dan Wallpaper..."
+    mkdir -p ~/Pictures
+    # Memindahkan pic.png dari repo ke folder Pictures
+    if [ -f "pic.png" ]; then
+        cp pic.png ~/Pictures/
+    fi
 }
 
 # --- EKSEKUSI UTAMA ---
