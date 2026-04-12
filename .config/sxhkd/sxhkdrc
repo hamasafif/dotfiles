@@ -3,8 +3,12 @@
 # ==========================================
 
 # Membuka terminal (Alacritty)
+super + p
+	/home/wrjunior/.config/rofi/powermenu/type-5/powermenu.sh	
+
+# Membuka terminal (Alacritty)
 super + Return
-	alacritty
+	kitty
 
 # Membuka Web Browser (Firefox)
 super + b
@@ -12,11 +16,11 @@ super + b
 
 # Membuka Web Browser (Firefox)
 super + e
-	thunar &
+	nautilus &
 
 # Membuka Menu Aplikasi (Rofi)
 super + @space
-	rofi -show drun
+	/home/wrjunior/.config/rofi/launchers/type-2/launcher.sh
 
 # Ambil Screenshot (Pilihan Full atau Area)
 super + Print

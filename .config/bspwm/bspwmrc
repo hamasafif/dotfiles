@@ -32,7 +32,7 @@ picom &
 dunst &
 
 # 3. Menjalankan Feh untuk Wallpaper (Nanti sesuaikan nama filenya)
-feh --bg-fill ~/Pictures/wall.jpg &
+feh --bg-fill /home/wrjunior/Pictures/Wallpaper-Bank/wallpapers/Anime-Girl1.png &
 
 # 4. Menjalankan Polybar (Panel atas)
 polybar example &
