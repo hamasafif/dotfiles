@@ -43,3 +43,5 @@ polybar example &
 # Menjalankan ikon Network/Wi-Fi di System Tray Polybar
 nm-applet &
 
+# Menjalankan daemon notifikasi
+dunst &

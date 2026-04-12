@@ -10,9 +10,17 @@ super + Return
 super + b
 	firefox &
 
+# Membuka Web Browser (Firefox)
+super + e
+	thunar &
+
 # Membuka Menu Aplikasi (Rofi)
 super + @space
 	rofi -show drun
+
+# Ambil Screenshot (Pilihan Full atau Area)
+super + Print
+    ~/.config/bspwm/screenshot.sh
 
 # Memuat ulang (reload) konfigurasi sxhkd (Berguna jika kamu baru mengedit file ini)
 super + Escape

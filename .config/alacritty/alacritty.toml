@@ -17,5 +17,3 @@ family = "FiraCode Nerd Font"
 style = "Italic"
 
 # Mengaktifkan ligatures (opsional, sangat keren untuk FiraCode)
-[font.features]
-features = ["calt", "liga"]
