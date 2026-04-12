@@ -1,0 +1,45 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# Setup Resolusi 1080p Mode Mirror
+xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1 --mode 1920x1080 --same-as eDP-1 &
+
+# Mematikan screen blanking dan DPMS (Power Management X11)
+xset s off -dpms &
+
+# -- AUTOSTART Ricing --
+
+# 1. Menjalankan Picom untuk transparansi, shadow, dan animasi
+picom &
+
+# 2. Menjalankan Dunst untuk sistem notifikasi
+dunst &
+
+# 3. Menjalankan Feh untuk Wallpaper (Nanti sesuaikan nama filenya)
+feh --bg-fill ~/Pictures/wall.jpg &
+
+# 4. Menjalankan Polybar (Panel atas)
+polybar example &
+
+# Menjalankan agen autentikasi GUI (Polkit) untuk pop-up password
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Menjalankan ikon Network/Wi-Fi di System Tray Polybar
+nm-applet &
+
