@@ -4,7 +4,7 @@ echo "🚀 Memulai Instalasi Dotfiles wrjunior (Versi Full Animasi)..."
 
 # 1. Update sistem dan instal seluruh dependensi dari Repo Resmi
 echo "📦 Menginstal dependensi dari repositori resmi..."
-sudo pacman -Syu --needed ttf-firacode-nerd noto-fonts-emoji bspwm sxhkd polybar rofi alacritty dunst feh \
+sudo pacman -Syu --needed ttf-firacode-nerd noto-fonts-emoji bspwm sxhkd polybar rofi kitty dunst feh \
 thunar thunar-archive-plugin gvfs lxappearance papirus-icon-theme materia-gtk-theme \
 polkit-gnome network-manager-applet xorg-xset pamixer brightnessctl \
 ttf-jetbrains-mono-nerd ttf-font-awesome ttf-firacode-nerd ttf-hack-nerd \
