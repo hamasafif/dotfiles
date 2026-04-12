@@ -277,7 +277,7 @@ rm -rf ~/.config/rofi/*
 
 Copy config rofi dari archdotfiles
 ```bash
-cp -rf ~/archdotfiles/rofi/* ~/.config/rofi/
+cp -rf ~/archdotfiles/.config/rofi/* ~/.config/rofi/
 ```
 
 Resart bspwm
