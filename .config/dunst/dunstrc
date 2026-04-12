@@ -1,0 +1,58 @@
+[global]
+    ### Tampilan & Responsivitas ###
+    # Menggunakan lebar yang fleksibel agar tidak kaku
+    width = 380
+    height = 180
+    origin = top-right
+    offset = 25x55
+    scale = 0
+    
+    # Jarak internal agar teks memiliki "ruang bernapas"
+    padding = 20
+    horizontal_padding = 20
+    text_icon_padding = 20
+    
+    # Bingkai & Sudut yang lebih modern
+    frame_width = 2
+    frame_color = "#88C0D0"
+    corner_radius = 15
+    
+    ### Tipografi ###
+    # Ukuran font disesuaikan agar proporsional
+    font = "FiraCode Nerd Font 11, Noto Color Emoji 11"
+    line_height = 5
+    
+    # Format judul dan isi yang lebih seimbang
+    format = "<span size='large' weight='bold' foreground='#88C0D0'>%s</span>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    
+    ### Animasi & Efek (Smoothness) ###
+    # Mengaktifkan transparansi yang pas
+    transparency = 10
+    
+    # Mengatur pemisah notifikasi bertumpuk
+    separator_height = 2
+    separator_color = "frame"
+    
+    # Kecepatan animasi (Dunst akan mengikuti compositor picom kamu)
+    sort = yes
+    idle_threshold = 120
+
+[urgency_low]
+    background = "#2E3440"
+    foreground = "#D8DEE9"
+    timeout = 3
+
+[urgency_normal]
+    background = "#2E3440"
+    foreground = "#ECEFF4"
+    timeout = 6
+
+[urgency_critical]
+    background = "#BF616A"
+    foreground = "#ECEFF4"
+    frame_color = "#EBCB8B"
+    timeout = 0
