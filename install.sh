@@ -27,7 +27,8 @@ install_base() {
         nautilus ntfs-3g udisks2 gvfs libmtp \
         ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-font-awesome \
         noto-fonts-emoji papirus-icon-theme materia-gtk-theme \
-        polkit-gnome network-manager-applet pamixer brightnessctl
+        polkit-gnome network-manager-applet pamixer brightnessctl \
+        ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-font-awesome ttf-hack-nerd
 }
 
 # 2. Install Virtualization Tools (QEMU/KVM)
@@ -70,6 +71,17 @@ setup_system() {
     
     # Mengubah Shell ke Zsh
     sudo chsh -s $(which zsh) $USER
+}
+
+# Tambahkan fungsi ini di install.sh
+setup_xinit() {
+    print_status "Mengonfigurasi .xinitrc untuk pemanggilan desktop..."
+    if [ -f ~/.xinitrc ]; then
+        mv ~/.xinitrc ~/.xinitrc.bak
+        print_status "Backup .xinitrc lama ditemukan dan diamankan."
+    fi
+    echo "exec bspwm" > ~/.xinitrc
+    chmod +x ~/.xinitrc
 }
 
 # 6. Deploy Dotfiles
