@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Arahkan ke folder yang sama
-WALL_DIR="/home/wrjunior/Pictures/Wallpaper-Bank/wallpapers/"
+WALL_DIR="~/Pictures/"
 
 # Ambil daftar nama file gambar saja (agar rapi di Rofi)
 PICS=$(ls -1 "$WALL_DIR" | grep -E '\.(jpg|jpeg|png)$')
