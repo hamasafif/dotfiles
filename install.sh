@@ -119,6 +119,7 @@ install_virt
 install_yay
 install_aur_pkgs
 setup_system
+setup_xinit
 deploy_dots
 
 echo -e "${GREEN}✅ INSTALASI SELESAI!${NC}"
