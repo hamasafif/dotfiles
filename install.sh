@@ -1,47 +1,102 @@
 #!/bin/bash
 
-echo "🚀 Memulai Instalasi Dotfiles wrjunior (Versi Full Animasi)..."
+# =============================================================================
+# SCRIPT INSTALASI DOTFILES WRJUNIOR
+# Target: Arch Linux (Physical L460 & Virtual Machine QEMU/KVM)
+# =============================================================================
 
-# 1. Update sistem dan instal seluruh dependensi dari Repo Resmi
-echo "📦 Menginstal dependensi dari repositori resmi..."
-sudo pacman -Syu --needed ttf-firacode-nerd noto-fonts-emoji bspwm sxhkd polybar rofi kitty dunst feh \
-thunar thunar-archive-plugin gvfs lxappearance papirus-icon-theme materia-gtk-theme \
-polkit-gnome network-manager-applet xorg-xset pamixer brightnessctl \
-ttf-jetbrains-mono-nerd ttf-font-awesome ttf-firacode-nerd ttf-hack-nerd \
-curl git base-devel zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting
+set -e # Berhenti jika ada error
 
-# 2. Instal AUR Helper (yay) jika belum ada
-if ! command -v yay &> /dev/null; then
-    echo "🛠️ Yay tidak ditemukan. Menginstal yay..."
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
-    cd /tmp/yay && makepkg -si --noconfirm
-    cd -
-fi
+# Warna untuk output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
 
-# 3. Instal Picom FT-Labs (untuk animasi bergeser)
-echo "✨ Menginstal Picom FT-Labs dari AUR..."
-yay -S --needed --noconfirm picom-ftlabs-git
+print_status() {
+    echo -e "${BLUE}==>${NC} ${GREEN}$1${NC}"
+}
 
-# 4. Menyalin konfigurasi ke ~/.config dan Home
-echo "📂 Menempatkan file konfigurasi ke tempatnya..."
-mkdir -p ~/.config
-cp -r .config/* ~/.config/
-cp .zshrc ~/
+# 1. Update Sistem & Install Base Dependencies
+install_base() {
+    print_status "Mengupdate sistem dan menginstal dependensi dasar..."
+    sudo pacman -Syu --needed --noconfirm \
+        base-devel git curl wget zsh zsh-completions \
+        xorg-server xorg-xinit xorg-xset xorg-xrandr \
+        bspwm sxhkd polybar rofi kitty dunst feh \
+        nautilus ntfs-3g udisks2 gvfs libmtp \
+        ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-font-awesome \
+        noto-fonts-emoji papirus-icon-theme materia-gtk-theme \
+        polkit-gnome network-manager-applet pamixer brightnessctl
+}
 
-# 5. Memastikan file script memiliki izin eksekusi
-echo "🔧 Mengatur file permission..."
-chmod +x ~/.config/bspwm/bspwmrc
-chmod +x ~/.config/rofi/powermenu.sh
-chmod +x ~/.config/rofi/wallpaper_menu.sh
-chmod +x ~/.config/bspwm/random_wallpaper.sh
+# 2. Install Virtualization Tools (QEMU/KVM)
+install_virt() {
+    print_status "Menginstal QEMU, Virt-Manager, dan Driver Virtual..."
+    sudo pacman -S --needed --noconfirm \
+        qemu-full virt-manager libvirt dnsmasq iptables-nft \
+        spice-vdagent xf86-video-qxl # Driver khusus agar VM smooth
+}
 
-# 6. Mengubah Shell Default ke Zsh
-echo "🐚 Mengubah shell default ke Zsh..."
-sudo chsh -s $(which zsh) $USER
+# 3. Handle AUR Helper (Yay)
+install_yay() {
+    if ! command -v yay &> /dev/null; then
+        print_status "Memasang AUR Helper (Yay)..."
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        cd /tmp/yay && makepkg -si --noconfirm
+        cd -
+    else
+        print_status "Yay sudah terpasang."
+    fi
+}
 
-# 7. Mengaktifkan NetworkManager
-echo "🌐 Mengaktifkan Network Manager..."
-sudo systemctl enable NetworkManager
+# 4. Install AUR Packages (Picom FT-Labs)
+install_aur_pkgs() {
+    print_status "Memasang paket dari AUR..."
+    yay -S --needed --noconfirm picom-ftlabs-git zsh-autosuggestions zsh-syntax-highlighting
+}
 
-echo "✅ SEMUA SELESAI!"
-echo "⚠️ Silakan Reboot sistem untuk menerapkan perubahan Shell dan NetworkManager."
+# 5. Konfigurasi Sistem & Jaringan
+setup_system() {
+    print_status "Mengatur layanan sistem (Network & Virtualization)..."
+    
+    # Mencegah IP Ganda: Gunakan NetworkManager saja
+    sudo systemctl disable --now systemd-networkd || true
+    sudo systemctl enable --now NetworkManager
+    
+    # Mengaktifkan Virtualisasi
+    sudo systemctl enable --now libvirtd
+    sudo usermod -aG libvirt $USER
+    
+    # Mengubah Shell ke Zsh
+    sudo chsh -s $(which zsh) $USER
+}
+
+# 6. Deploy Dotfiles
+deploy_dots() {
+    print_status "Menyalin file konfigurasi..."
+    mkdir -p ~/.config
+    cp -r .config/* ~/.config/
+    cp .zshrc ~/
+    
+    # Memberi izin eksekusi pada semua script
+    print_status "Mengatur izin eksekusi script..."
+    find ~/.config -name "*.sh" -exec chmod +x {} +
+    chmod +x ~/.config/bspwm/bspwmrc
+}
+
+# --- EKSEKUSI UTAMA ---
+clear
+echo -e "${YELLOW}Starting Installation...${NC}"
+
+install_base
+install_virt
+install_yay
+install_aur_pkgs
+setup_system
+deploy_dots
+
+echo -e "${GREEN}✅ INSTALASI SELESAI!${NC}"
+echo -e "${YELLOW}PENTING:${NC}"
+echo "1. Silakan REBOOT laptop L460 atau VM Anda."
+echo "2. Jika di VM, pastikan Network Interface di polybar/config.ini disesuaikan (enp1s0/eth0)."
