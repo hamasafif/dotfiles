@@ -1,4 +1,10 @@
 
+# SEMUA AKAN TERKENDALI JIKA DI LANDASI DENGAN BISMILLAH
+
+Pastikan Anda menginstall archlinux menggunakan desktop profile bspwm
+Dan Settingan ini Hanya Aku yang tau, Kalo mau oprek ya sak karep mu
+
+
 ## Penyesuaian Wallapaper (Default saat startx)
 Ganti lokasi file wallpaper di bagian 3
 
