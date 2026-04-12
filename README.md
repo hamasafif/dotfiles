@@ -280,3 +280,7 @@ Copy config rofi dari archdotfiles
 cp -rf ~/archdotfiles/rofi/* ~/.config/rofi/
 ```
 
+Resart bspwm
+```bash
+windows + alt + esc
+```
