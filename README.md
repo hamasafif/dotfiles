@@ -1,6 +1,83 @@
-# SEMUA AKAN TERKENDALI JIKA DI LANDASI DENGAN BISMILLAH
 
-Pastikan Anda menginstall archlinux menggunakan desktop profile bspwm
+## Penyesuaian Wallapaper (Default saat startx)
+Ganti lokasi file wallpaper di bagian 3
+
+ ```bash
+nano ~/.config/bspwm/bspwmrc
+
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# Setup Resolusi 1080p Mode Mirror
+xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1 --mode 1920x1080 --same-as eDP-1 &
+
+# Mematikan screen blanking dan DPMS (Power Management X11)
+xset s off -dpms &
+
+# -- AUTOSTART Ricing --
+
+# 1. Menjalankan Picom untuk transparansi, shadow, dan animasi
+picom &
+
+# 2. Menjalankan Dunst untuk sistem notifikasi
+dunst &
+
+# 3. Menjalankan Feh untuk Wallpaper (Nanti sesuaikan nama filenya)
+feh --bg-fill <Lokasi File Wallpaper> &
+
+# 4. Menjalankan Polybar (Panel atas)
+polybar example &
+
+# Menjalankan agen autentikasi GUI (Polkit) untuk pop-up password
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Menjalankan ikon Network/Wi-Fi di System Tray Polybar
+nm-applet &
+
+# Menjalankan daemon notifikasi
+dunst &
+ ```
+
+## Penyesuaian Wallapaper (Pilih Wallpaper)
+Arahkan `WALL_DIR` ke lokasi Wallpaper anda
+
+```bash
+nano ~/.config/rofi/wallpaper_menu.sh
+
+#!/bin/bash
+
+# Arahkan ke folder yang sama
+WALL_DIR="/home/user/Pictures/Wallpaper-Bank/wallpapers/"
+
+# Ambil daftar nama file gambar saja (agar rapi di Rofi)
+PICS=$(ls -1 "$WALL_DIR" | grep -E '\.(jpg|jpeg|png)$')
+
+# Tampilkan di menu Rofi dan simpan pilihan user
+CHOSEN=$(echo "$PICS" | rofi -dmenu -i -p " Wallpaper:")
+
+# Jika user memilih sesuatu (tidak menekan ESC), terapkan gambarnya!
+if [ -n "$CHOSEN" ]; then
+    feh --bg-fill "$WALL_DIR/$CHOSEN"
+fi
+
+
+```
 
 
 ## Shortcut Keyboard
