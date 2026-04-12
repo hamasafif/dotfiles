@@ -13,7 +13,7 @@ cp -r ~/.config/polybar/* .config/polybar/
 cp -r ~/.config/rofi/* .config/rofi/
 cp -r ~/.config/alacritty/* .config/alacritty/
 cp -r ~/.config/picom/* .config/picom/
-
+cp -r ~/.config/fontconfig/* .config/fontconfig/
 # Menyalin konfigurasi Zsh di home directory
 echo "🐚 Menyalin .zshrc..."
 cp ~/.zshrc ./
