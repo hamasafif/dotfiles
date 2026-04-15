@@ -23,7 +23,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 # Format untuk Git: Menampilkan ikon cabang (branch) jika ada di dalam folder repo
 zstyle ':vcs_info:git:*' formats ' %F{240} %b%f'
-
+setopt PROMPT_SUBST
 # Desain Prompt:
 # Baris 1:  user at 󰒋 host in  folder [ branch]
 # Baris 2: ❯❯❯
