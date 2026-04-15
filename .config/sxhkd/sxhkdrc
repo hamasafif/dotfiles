@@ -2,13 +2,13 @@
 # HOTKEY UMUM (APLIKASI)
 # ==========================================
 
-# Membuka terminal (Alacritty)
+# Shortcut power menu
 super + p
-	/home/wrjunior/.config/rofi/powermenu/type-5/powermenu.sh
+	~/.config/rofi/powermenu/type-5/powermenu.sh
 
-# Membuka terminal (Alacritty)
+# Ganti Wallpaper
 super + w
-	/home/wrjunior/.config/rofi/wallpaper_menu.sh
+	~/.config/rofi/wallpaper_menu.sh
 	
 # Membuka terminal (Alacritty)
 super + Return
