@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Matikan semua bar yang sedang berjalan
+# 1. Hentikan Polybar yang sedang berjalan secara diam-diam
 killall -q polybar
 
-# Tunggu sampai proses benar-benar berhenti
+# 2. Tunggu sampai proses Polybar benar-benar mati di background
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Jalankan bar utama (mengarah ke config.ini yang sudah di-link)
-polybar example &
+# 3. Jalankan Polybar dengan memanggil bar bernama "example"
+# Ia akan membaca file config.ini yang baru saja di-symlink oleh rofi
+polybar example -c "$HOME/.config/polybar/config.ini" &
+
+echo "Polybar berhasil diluncurkan!"

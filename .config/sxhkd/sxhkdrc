@@ -3,6 +3,10 @@
 # ==========================================
 
 # Shortcut power menu
+super + shift + p
+	~/.config/polybar/theme_selector.sh
+
+# Shortcut power menu
 super + p
 	~/.config/rofi/powermenu/type-5/powermenu.sh
 
